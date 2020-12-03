@@ -79,7 +79,8 @@ class helper_plugin_blog extends DokuWiki_Plugin {
             $date = $meta['date']['modified'];
             if (!$date) $date = filemtime(wikiFN($id));
             if ($this->sort != 'mdate') {
-                $cdate = $meta['date']['created'];
+                $cdate = $meta['date']['issued'];
+                if (!$cdate) $cdate = $meta['date']['created'];
                 if (!$cdate) $cdate = filectime(wikiFN($id));
                 // prefer the date further in the past:
                 $date = min($date, $cdate);
